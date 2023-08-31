@@ -1,0 +1,29 @@
+{
+    "model": {
+        "model_name": "MobileNetV3", 
+        "model": "/home/yuesang/Pythonproject/MobileNetV3/runs/train/exp1/bestfp16.xml", 
+        "weights": "/home/yuesang/Pythonproject/MobileNetV3/runs/train/exp1/bestfp16.bin" 
+    },
+
+
+
+    "engine": {
+        "config": "/home/yuesang/Pythonproject/MobileNetV3/onnxinference/int8inference/AccuracyAwareQuantization/model.yaml"
+    },
+
+
+    "compression": {
+        "target_device": "CPU", 
+                                
+        "algorithms": [
+            {
+                "name": "AccuracyAwareQuantization", 
+                "params": {
+                    "preset": "performance",                      
+                    "stat_subset_size": 300  ,
+                    "maximal_drop": 0.1 
+                }
+            }
+        ]
+    }
+}

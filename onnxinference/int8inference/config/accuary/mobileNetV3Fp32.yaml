@@ -1,0 +1,36 @@
+models:
+  - name: mobileNetV3Fp32
+    launchers:
+      #下面指定运行的框架 dlsdk就是openvino， 也可以是tensorflow或者其他框架
+      #model/weights是要测试的模型文件名
+      #adapter是告诉accuracy checker模型的输出是目标分类还是目标识别或者其他的输出
+      - framework: openvino
+        model: /home/yuesang/Pythonproject/MobileNetV3/runs/train/exp3/bestfp16.xml
+        weights: /home/yuesang/Pythonproject/MobileNetV3/runs/train/exp3/bestfp16.bin
+        adapter: classification
+
+    datasets:
+      #下面这部分是有关数据集的路径，数据集的格式(imagenet，VOC或者其他)以及标注文件的名字
+      - name: Flower
+        data_source: /mnt/hdd-4t/data/hanyue/mobileNet/flower
+        annotation_conversion:
+          converter: imagenet
+          annotation_file: "/home/yuesang/Pythonproject/MobileNetV3/onnxinference/int8inference/dataset/my_annotation.txt"
+        #预处理告诉ac_checker工具在把数据集图片送进模型前要做那些预处理，比如缩放，剪切或者调整RGB/BGR顺序之类
+        reader: opencv_imread # default setting
+        preprocessing:
+          - type: resize
+            size: 256
+            aspect_ratio_scale: greater
+          - type: crop
+            size: 224
+          - type: bgr_to_rgb # bgr format in opencv
+          - type: normalization
+            # you may specify precomputed statistics manually or use precomputed values, such as ImageNet as well
+            mean: (123.675, 116.28, 103.53)
+            std: (58.395, 57.12, 57.375)
+        #这里定义统计准确度用的算法，这里要看2种准确度，一个是top1的，还一个是top5的
+        metrics:
+          - name: accuracy @ top1
+            type: accuracy
+            top_k: 1

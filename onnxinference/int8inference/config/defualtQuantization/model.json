@@ -1,0 +1,28 @@
+{
+    "model": {
+        "model_name": "MobileNetV3", 
+        "model": "/home/yuesang/Pythonproject/MobileNetV3/runs/train/exp3/bestfp16.xml", 
+        "weights": "/home/yuesang/Pythonproject/MobileNetV3/runs/train/exp3/bestfp16.bin" 
+    },
+
+
+
+    "engine": {
+        "config": "/home/yuesang/Pythonproject/MobileNetV3/onnxinference/int8inference/config/defualtQuantization/model.yaml"
+    },
+
+
+    "compression": {
+        "target_device": "CPU", 
+                                
+        "algorithms": [
+            {
+                "name": "DefaultQuantization", 
+                "params": {
+                    "preset": "performance",                      
+                    "stat_subset_size": 300  
+                }
+            }
+        ]
+    }
+}

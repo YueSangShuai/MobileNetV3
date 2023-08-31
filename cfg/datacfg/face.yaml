@@ -1,0 +1,3 @@
+train: /mnt/hdd-4t/data/hanyue/mobileNet/vp112png_copy/
+val: /mnt/hdd-4t/data/hanyue/mobileNet/vp112png_copy/
+test: /mnt/hdd-4t/data/hanyue/mobileNet/vp112png_copy/

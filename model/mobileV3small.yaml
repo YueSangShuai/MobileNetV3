@@ -1,0 +1,18 @@
+nc: 5
+last_channel: 1024
+width_multi: 1.0
+reduce_divider: False
+
+backbone:
+  # input_c, kernel, expanded_c, out_c, use_se, activation, stride
+  - [16, 3, 16, 16, True, "RE", 2] # C1
+  - [16, 3, 72, 24, False, "RE", 2] # C2
+  - [24, 3, 88, 24, False, "RE", 1]
+  - [24, 5, 96, 40, True, "HS", 2] # C3
+  - [40, 5, 240, 40, True, "HS", 1]
+  - [40, 5, 240, 40, True, "HS", 1]
+  - [40, 5, 120, 48, True, "HS", 1]
+  - [48, 5, 144, 48, True, "HS", 1]
+  - [48, 5, 288, 96, True, "HS", 2] # C4
+  - [96, 5, 576, 96, True, "HS", 1]
+  - [96, 5, 576, 96, True, "HS", 1]

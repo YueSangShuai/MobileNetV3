@@ -1,0 +1,43 @@
+INFO:openvino.tools.pot.app.run:Output log dir: /home/yuesang/Pythonproject/MobileNetV3/runs/train/exp1/MobileNetV3_AccuracyAwareQuantization/2023-07-31_19-13-09
+INFO:openvino.tools.pot.app.run:Creating pipeline:
+ Algorithm: AccuracyAwareQuantization
+ Parameters:
+	preset                     : performance
+	stat_subset_size           : 300
+	maximal_drop               : 0.01
+	target_device              : CPU
+	model_type                 : None
+	dump_intermediate_model    : False
+	inplace_statistics         : True
+	exec_log_dir               : /home/yuesang/Pythonproject/MobileNetV3/runs/train/exp1/MobileNetV3_AccuracyAwareQuantization/2023-07-31_19-13-09
+ ===========================================================================
+INFO:openvino.tools.pot.pipeline.pipeline:Inference Engine version:                2023.0.1-11005-fa1c41994f3-releases/2023/0
+INFO:openvino.tools.pot.pipeline.pipeline:Model Optimizer version:                 2023.0.1-11005-fa1c41994f3-releases/2023/0
+INFO:openvino.tools.pot.pipeline.pipeline:Post-Training Optimization Tool version: 2023.0.1-11005-fa1c41994f3-releases/2023/0
+INFO:openvino.tools.pot.statistics.collector:Start computing statistics for algorithms : AccuracyAwareQuantization
+INFO:openvino.tools.pot.statistics.collector:Computing statistics finished
+INFO:openvino.tools.pot.pipeline.pipeline:Start algorithm: AccuracyAwareQuantization
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Start original model inference
+INFO:openvino.tools.pot.engines.ac_engine:Start inference of 364 images
+INFO:openvino.tools.pot.engines.ac_engine:Inference finished
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Baseline metrics: {'accuracy @ top1': 0.9642857142857143}
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Start quantization
+INFO:openvino.tools.pot.algorithms.quantization.default.algorithm:Start computing statistics for algorithm : ActivationChannelAlignment
+INFO:openvino.tools.pot.algorithms.quantization.default.algorithm:Computing statistics finished
+INFO:openvino.tools.pot.algorithms.quantization.default.algorithm:Start computing statistics for algorithms : MinMaxQuantization,FastBiasCorrection
+INFO:openvino.tools.pot.algorithms.quantization.default.algorithm:Computing statistics finished
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Start compressed model inference
+INFO:openvino.tools.pot.engines.ac_engine:Start inference of 364 images
+INFO:openvino.tools.pot.engines.ac_engine:Inference finished
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Fully quantized metrics: {'accuracy @ top1': 0.8791208791208791}
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Accuracy drop: {'accuracy @ top1': 0.0851648351648352}
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:The total number of quantized operations in the graph: 98
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Changing fake quantize nodes scope
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Optimizing accuracy @ top1 metric
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Reverted 1 layers to the floating-point precision: /features/features.0/features.0.2/Mul
+INFO:openvino.tools.pot.engines.ac_engine:Start inference of 364 images
+INFO:openvino.tools.pot.engines.ac_engine:Inference finished
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm:Accuracy drop with the new quantization scope is {'accuracy @ top1': 0.008241758241758212}
+INFO:openvino.tools.pot.algorithms.quantization.accuracy_aware_common.algorithm: 1 out of 98 layers have been reverted back to the floating-point precision: /features/features.0/features.0.2/Mul
+INFO:openvino.tools.pot.pipeline.pipeline:Finished: AccuracyAwareQuantization
+ ===========================================================================

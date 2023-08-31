@@ -1,0 +1,3 @@
+train: /mnt/hdd-4t/data/hanyue/mobileNet/flower_for_cnn/train
+val: /mnt/hdd-4t/data/hanyue/mobileNet/flower_for_cnn/val
+test: /mnt/hdd-4t/data/hanyue/flower_for_cnn/val

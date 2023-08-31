@@ -1,0 +1,33 @@
+models:
+  - name: mobileNetV3
+    launchers:
+      - framework: dlsdk
+        device: CPU
+        adapter: classification
+    #定义数据集
+    datasets:
+      - name: classification_dataset
+        #定义数据集路径
+        data_source: /mnt/hdd-4t/data/hanyue/mobileNet/flower
+        #定义annotation路径
+        annotation_conversion:
+          converter: imagenet
+          annotation_file: /home/yuesang/Pythonproject/MobileNetV3/onnxinference/int8inference/my_annotation.txt
+
+        reader: opencv_imread # default setting
+        #这里需要提前定义预处理
+        preprocessing:
+          - type: resize
+            size: 256
+            aspect_ratio_scale: greater
+          - type: crop
+            size: 224
+          - type: bgr_to_rgb # bgr format in opencv
+          - type: normalization
+            # you may specify precomputed statistics manually or use precomputed values, such as ImageNet as well
+            mean: (123.675, 116.28, 103.53)
+            std: (58.395, 57.12, 57.375)
+        metrics:
+          - name: accuracy @ top1
+            type: accuracy
+            top_k: 1
